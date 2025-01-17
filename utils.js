@@ -1,0 +1,1 @@
+export default {user: "david", age: 25};

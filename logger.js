@@ -14,3 +14,6 @@ class Logger extends EventEmitter {
 }
 
 module.exports = Logger;
+
+console.log(process.argv);
+

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs')
 const emitter = require('events')
 const Logger = require('./logger');
@@ -7,13 +8,13 @@ const http = require('http');
 logger.on('message Logged', (arg) => {
     console.log('Listener called', arg);  
 })
-// const files = fs.readdirSync('./')
-// console.log(files)
+const files = fs.readdirSync('./')
+console.log(files)
 
-// fs.readdir('./', (err, files) => {
-//   if (err) console.log('Error', err)
-//   else console.log('Result', files)
-// })
+fs.readdir('./', (err, files) => {
+  if (err) console.log('Error', err)
+  else console.log('Result', files)
+})
 
 logger.log('message')
 
