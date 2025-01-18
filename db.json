@@ -1,3 +1,21 @@
 {
-    "notes": []
+  "notes": [
+    {
+      "content": "This is my first note",
+      "id": 1737104675674,
+      "tags": []
+    },
+    {
+      "content": "This is my first note",
+      "id": 1737104742148,
+      "tags": []
+    },
+    {
+      "content": "this is my note",
+      "id": 1737212293662,
+      "tags": [
+        "hello"
+      ]
+    }
+  ]
 }
