@@ -1,10 +1,18 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { createNote, getNotes, removeNote, removeAllNotes, findNotes } from "./notes.js";
+import {
+  createNote,
+  getNotes,
+  removeNote,
+  removeAllNotes,
+  findNotes,
+} from "./notes.js";
+import { get } from "node:https";
+import { start } from "./server.js";
 
 const listNotes = (notes) => {
-    console.log(notes);
-    
+  console.log(notes);
+
   notes.forEach((note) => {
     console.log("\n");
     console.log("id: ", note.id);
@@ -27,10 +35,8 @@ yargs(hideBin(process.argv))
     "get all notes",
     () => {},
     async (argv) => {
-        const notes = getNotes();
-        console.log(notes);
-        
-    //   listNotes(notes);
+      const notes = getNotes();
+      console.log(notes);
     }
   )
   .command(
@@ -76,7 +82,10 @@ yargs(hideBin(process.argv))
         type: "number",
       });
     },
-    async (argv) => {}
+    async (argv) => {
+      const notes = await getNotes();
+      start(notes, argv.port);
+    }
   )
   .command(
     "clean",
@@ -99,10 +108,9 @@ yargs(hideBin(process.argv))
         type: "string",
       }),
     async (argv) => {
-        const tags = argv.tags ? argv.tags.split(",") : [];
-        const note = await createNote(argv.note, tags);
-        console.log('Note created', note);
-        
+      const tags = argv.tags ? argv.tags.split(",") : [];
+      const note = await createNote(argv.note, tags);
+      console.log("Note created", note);
     }
   )
   .option("tags", {
